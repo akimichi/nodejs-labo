@@ -1,0 +1,16 @@
+{
+  "name": "node-labo",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "*",
+    "jade": "*",
+    "jasmine-node": ">=1.8.1",
+    "log4js": ">=0.6",
+    "backbone": ">=1.0.0",
+    "query-engine": ">=0.0"
+  }
+}
