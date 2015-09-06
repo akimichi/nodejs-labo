@@ -79,16 +79,55 @@ describe("String型", function() {
 	  expect("ABCDEFG".match(/DEF/)[0]).to.be("DEF");
 	  next();
 	});
+    describe("正規表現マクロ", () => {
+	  it("\\xhh は hh (2 桁の 16 進数) というコードを持つ文字列にマッチする")
+	  it("[]を使う", (next) => {
+		var buffer = ":788115012A8100247F7841E1000C8323000037FFFFFFFC27".match(/:7881([0-9A-Z]+)/);
+		expect(
+          buffer[1]
+		).to.be(
+          "15012A8100247F7841E1000C8323000037FFFFFFFC27"
+		);
+		expect(
+          buffer[1]
+		).to.be(
+          "15012A8100247F7841E1000C8323000037FFFFFFFC27"
+		);
+		next();
+	  });
+	  it("{}で回数を指定する", (next) => {
+		//            :788115015A8100247F7833D9000B7123000037FFFFFFFD1F
+		//                                                 __      __
+		var buffer = ":788115012A8100247F7841E1000C8323000037FFFFFFFC27".match(/:7881[0-9A-Z]{32}([0-9A-Z]{2})[0-9A-Z]{6}([0-9A-Z]{2})/);
+		//                 123456789                      
+		//                         10                     
+		//                          1123456789            
+		//                                   20           
+		//                                    2123456789  
+		//                                             30 
+		//                                              3123456789
+		//                                                       40
+		//                                                        41234
+		expect(
+          buffer[1]
+		).to.be(
+          "37"
+		);
+		expect(
+          buffer[2]
+		).to.be(
+          "FC"
+		);
+		next();
+	  });
+	  
+    });
 	it("()によるグルーピング", function(next) {
 	  var result = "12:34:56".match(/(\d+):(\d+):(\d+)/);
 	  expect(result[0]).to.be("12:34:56");
 	  expect(result[1]).to.be("12");
 	  expect(result[2]).to.be("34");
 	  expect(result[3]).to.be("56");
-
-	  var archetype_id = "openEHR-EHR-COMPOSITION.FIRST4_toyotomi_details.v1.r0.less".match(/(\w+-\w+-\w+\.\w+\.v\d+)/)[0];
-	  //match(/(\w+-\w+-\w+\.\w+\.v\d+)\.less/)[0];
-	  console.log("archetype_id", archetype_id);
 	  next();
 	});
   });
