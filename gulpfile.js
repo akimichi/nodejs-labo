@@ -8,16 +8,7 @@ var foreach = require('gulp-foreach');
 var tap = require('gulp-tap');
 
 var paths = {
-  coffee: ['spec/**/*.coffee', 'lib/*.coffee'],
-  config: 'config.yml',
-  output: 'build',
-  images: 'images',
-  preprocessed: '*.se',
-  postprocessed: '*.re',
-  review: {
-	preproc: "bin/review/bin/review-preproc",
-	pdfmaker: "bin/review/bin/review-pdfmaker"
-  }
+  coffee: ['spec/**/*.coffee', 'lib/*.coffee']
 };
 
 // gulp.task('test', function() {
