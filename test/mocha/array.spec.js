@@ -56,6 +56,16 @@ describe("配列について", () => {
 	expect([1,2,3].map(function(i){return i*2;})).to.eql([ 2,4,6 ]);
 	next();
   });
+  it('Array.reduce', function(next) {
+	expect(
+	  [1,2,3].reduce((accumulator, value) => {
+		return 1 + accumulator;
+      }, 0)
+	).to.eql(
+	  3
+	)
+	next();
+  });
   it('Array.sortで配列を並べかえる', function(next) {
 	/* #@range_begin(array_sort) */
 	var array = [0,1,2,3,4];
