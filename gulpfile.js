@@ -9,27 +9,38 @@ var tap = require('gulp-tap');
 var docco = require("gulp-docco");
 var exit = require('gulp-exit');
 
+require('coffee-script/register');
+
 var paths = {
   coffee: ['spec/**/*.coffee', 'lib/*.coffee']
 };
 
-// gulp.task('compile-coffee', function() {
-//   gulp.src(paths.coffee)
-//     .pipe(coffee({bare: true})).on('error', gutil.log)
-//     .pipe(gulp.dest('lib/'));
-// });
+gulp.task('compile', function() {
+  gulp.src('test/mocha/coffee/*.coffee')
+    .pipe(coffee({bare: true})).on('error', gutil.log)
+    .pipe(gulp.dest('test/mocha/js/'));
+});
 
 
-gulp.task('test', function() {
-  //run('mocha --harmony -R spec test/*.js').exec();
-  return gulp.src(['test/mocha/*.js'], { read: false })
+gulp.task('test',['test-js','test-coffee']);
+gulp.task('test-js', () => {
+  return gulp.src('test/mocha/*.js', { read: false })
     .pipe(mocha({
       reporter: 'spec',
       globals: {
         should: require('expect.js')
       }
     }))
-    .pipe(exit());
+});
+
+gulp.task('test-coffee', ["compile"], () => {
+  gulp.src('test/mocha/js/*.js', { read: false })
+    .pipe(mocha({
+      reporter: 'spec',
+      globals: {
+        should: require('expect.js')
+      }
+    }))
 });
 
 
