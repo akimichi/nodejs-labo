@@ -6,10 +6,42 @@ var coffee = require('gulp-coffee');
 var run = require('gulp-run');
 var foreach = require('gulp-foreach');
 var tap = require('gulp-tap');
+var docco = require("gulp-docco");
+var exit = require('gulp-exit');
 
 var paths = {
   coffee: ['spec/**/*.coffee', 'lib/*.coffee']
 };
+
+// gulp.task('compile-coffee', function() {
+//   gulp.src(paths.coffee)
+//     .pipe(coffee({bare: true})).on('error', gutil.log)
+//     .pipe(gulp.dest('lib/'));
+// });
+
+
+gulp.task('test', function() {
+  //run('mocha --harmony -R spec test/*.js').exec();
+  return gulp.src(['test/mocha/*.js'], { read: false })
+    .pipe(mocha({
+      reporter: 'spec',
+      globals: {
+        should: require('expect.js')
+      }
+    }))
+    .pipe(exit());
+});
+
+
+gulp.task('doc', function() {
+  //return gulp.src("./lib/*.js")
+  return gulp.src(["./lib/*.js","./examples/*.js","./test/*.js"])
+    .pipe(docco())
+    .pipe(gulp.dest('./docs'));
+});
+
+
+gulp.task('default', ['test','doc']);
 
 // gulp.task('test', function() {
 //   run('mocha --harmony -R spec').exec();
@@ -19,30 +51,24 @@ var paths = {
 //   run('mocha --harmony -R spec').exec();
 //   //run('mocha --harmony -R spec test/*.js').exec();
 // });
-gulp.task('mocha-test', function() {
-  return gulp.src(['test/mocha/*.js'], { read: false })
-    .pipe(mocha({
-      reporter: 'spec',
-      globals: {
-        should: require('expect.js')
-      }
-    }));
-});
+// gulp.task('mocha-test', function() {
+//   return gulp.src(['test/mocha/*.js'], { read: false })
+//     .pipe(mocha({
+//       reporter: 'spec',
+//       globals: {
+//         should: require('expect.js')
+//       }
+//     }));
+// });
 
-gulp.task('jasmine-test', function () {
-  return gulp.src('spec/*.spec.js')
-    .pipe(jasmine({
-	  includeStackTrace: true,
-	  timeout : 5000
-	})).on('error', gutil.log);
-});
-
-// gulp.task('compile-coffee', function() {
-//   gulp.src(paths.coffee)
-//     .pipe(coffee({bare: true})).on('error', gutil.log)
-//     .pipe(gulp.dest('lib/'));
+// gulp.task('jasmine-test', function () {
+//   return gulp.src('spec/*.spec.js')
+//     .pipe(jasmine({
+// 	  includeStackTrace: true,
+// 	  timeout : 5000
+// 	})).on('error', gutil.log);
 // });
 
 
 
-gulp.task('default', ['mocha-test']);
+// gulp.task('default', ['mocha-test']);
