@@ -59,11 +59,12 @@ describe("配列について", () => {
   it('Array.reduce', function(next) {
 	expect(
 	  [1,2,3].reduce((accumulator, value) => {
+		console.log(accumulator);
 		return 1 + accumulator;
       }, 0)
 	).to.eql(
 	  3
-	)
+	);
 	next();
   });
   it('Array.sortで配列を並べかえる', function(next) {
