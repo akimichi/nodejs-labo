@@ -9,12 +9,12 @@ describe("util", () => {
 	  util.format('%s', 'foo')
 	).to.eql(
 	  "foo"
-	)
+	);
 	expect(
 	  util.format('%s', 'foo')
 	).to.eql(
 	  "foo"
-	)
+	);
 	next();
   });
 });
