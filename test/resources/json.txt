@@ -1,0 +1,7 @@
+{
+    "a": "a string",
+    "number": 2,
+    "child": {
+        "memo": "child node"
+    }
+}

@@ -56,7 +56,7 @@ describe("配列について", () => {
 	expect([1,2,3].map(function(i){return i*2;})).to.eql([ 2,4,6 ]);
 	next();
   });
-  it('Array.reduce', function(next) {
+  it('Array.reduce', (next) => {
 	expect(
 	  [1,2,3].reduce((accumulator, value) => {
 		console.log(accumulator);

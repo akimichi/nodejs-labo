@@ -9,29 +9,64 @@ describe('IO', function() {
 	after(() => {
 	  fs.writeFileSync('test/resources/file.txt', "This is a test.");
 	});
-    it('read', (next) => {
-	  var file = fs.readFileSync("test/resources/file.txt", 'utf8');
-      expect(
-		file.length
-	  ).to.be(
-		15
-	  );
-      expect(
-		file
-	  ).to.be(
-		"This is a test."
-	  );
-	  next();
+    describe('read', () => {
+      it('文字列として読み込む', (next) => {
+	    var file = fs.readFileSync("test/resources/file.txt", 'utf8');
+        expect(
+		  file.length
+	    ).to.be(
+		  15
+	    );
+        expect(
+		  file
+	    ).to.be(
+		  "This is a test."
+	    );
+	    next();
+      });
+      it('JSONとして読み込む', (next) => {
+        expect(
+          JSON.parse(fs.readFileSync("test/resources/json.txt", 'utf8'))
+	    ).to.eql(
+		  {
+            "a": "a string",
+            "number": 2,
+            "child": {
+              "memo": "child node"
+            }
+          }
+	    );
+	    next();
+      });
     });
-    it('write', (next) => {
-	  fs.writeFileSync('test/resources/file.txt', "This is another test.")
-	  var file = fs.readFileSync("test/resources/file.txt", 'utf8');
-      expect(
-		file
-	  ).not.to.be(
-		"This is a test."
-	  );
-	  next();
+    describe('write', () => {
+      it('文字列を出力する', (next) => {
+	    fs.writeFileSync('test/resources/file.txt', "This is another test.");
+	    var file = fs.readFileSync("test/resources/file.txt", 'utf8');
+        expect(
+		  file
+	    ).not.to.be(
+		  "This is a test."
+	    );
+	    next();
+      });
+      it('JSONを出力する', (next) => {
+        var object = {
+          "a": "a string",
+          "number": 2,
+          "child": {
+            "memo": "child node"
+          }
+        };
+	    fs.writeFileSync('test/resources/json.txt',  JSON.stringify(object, null, '    '));
+	    var file = fs.readFileSync("test/resources/json.txt", 'utf8');
+        expect(
+          JSON.parse(fs.readFileSync("test/resources/json.txt", 'utf8'))
+	    ).to.eql(
+		  object
+	    );
+	    next();
+      });
     });
   });
 });
