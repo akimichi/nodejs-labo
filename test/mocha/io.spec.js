@@ -59,7 +59,6 @@ describe('IO', function() {
           }
         };
 	    fs.writeFileSync('test/resources/json.txt',  JSON.stringify(object, null, '    '));
-	    var file = fs.readFileSync("test/resources/json.txt", 'utf8');
         expect(
           JSON.parse(fs.readFileSync("test/resources/json.txt", 'utf8'))
 	    ).to.eql(

@@ -76,6 +76,27 @@ describe("オブジェクト", () => {
       
       next();
     });
+	it("オブジェクトをマージする", (next) => {
+      var merge = (obj1,obj2) => {
+        var mergedObject = {};
+        for (var attrname in obj1) { mergedObject[attrname] = obj1[attrname]; }
+        for (var attrname in obj2) { mergedObject[attrname] = obj2[attrname]; }
+        return mergedObject;
+      };
+	  expect(
+        merge({},{})
+      ).to.eql(
+        {}
+      );
+      
+	  expect(
+        merge({a:1},{})
+      ).to.eql(
+        {a:1}
+      );
+      
+      next();
+    });
   });
   describe('OOP related patterns', function() {
 	it("object literal pattern", function(next) {
