@@ -14,7 +14,7 @@ describe("String型", function() {
 	expect(str.split(' ')).to.eql(["123", "455", "789"]);
 	next();
   });
-  it("toUpperCase", function(next) {
+  it("toUpperCaseで大文字に変換する ", function(next) {
 	var str = "string";
 	expect(str.toUpperCase()).to.eql("STRING");
 	expect(str).to.eql("string");
@@ -67,6 +67,14 @@ describe("String型", function() {
 	};
 	expect(template("A :hole is filled", "hole", "template")).to.be("A template is filled");
 	next();
+  });
+  describe("文字列を置換する", function() {
+    var string = "ジャンプ";
+    expect(
+     string.replace("ジャンプ","jump")
+    ).to.eql(
+      "jump"
+    );
   });
   describe("正規表現について", function() {
 	it("Regex.match", function(next) {

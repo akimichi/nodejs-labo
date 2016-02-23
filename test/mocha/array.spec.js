@@ -2,6 +2,8 @@
 
 var expect = require('expect.js');
 
+
+
 describe("配列について", () => {
   var ary = [0,1,2,3,4];
 
