@@ -9,6 +9,22 @@ describe("String型", function() {
 	expect(str).to.eql("string");
 	next();
   });
+describe("文字列を連結する", () => {
+  it("string.concatで文字列を連結できる", (next) => {
+    var a = "a";
+    var b = "b";
+    expect(
+      a.concat(b)
+    ).to.be("ab");
+    next();
+  });
+  it("+演算子で文字列を連結できる", function(next) {
+	var a = "a";
+	var b = "b";
+	expect(a + b).to.be("ab");
+	next();
+  });
+  });
   it("splitで文字列を分割できる", function(next) {
 	var str = "123 455 789";
 	expect(str.split(' ')).to.eql(["123", "455", "789"]);
@@ -24,12 +40,6 @@ describe("String型", function() {
 	var str = "  string  ";
 	expect(str.trim()).to.eql("string");
 	expect(str.trim()).not.to.eql(str);
-	next();
-  });
-  it("+演算子で文字列を連結できる", function(next) {
-	var a = "a";
-	var b = "b";
-	expect(a + b).to.be("ab");
 	next();
   });
   it("charCodeAtは与えられた インデックスの文字の Unicode値を返す", function(next) {
