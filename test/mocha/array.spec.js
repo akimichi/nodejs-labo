@@ -54,6 +54,16 @@ describe("配列について", () => {
 	/* #@range_end(destructive_reverse) */
 	next();
   });
+  it('Array.filter', (next) => {
+	expect(
+      [1,2,3].filter((i) => {
+        return i%2 === 0;
+      })
+    ).to.eql(
+      [ 2 ]
+    );
+	next();
+  });
   it('Array.map', function(next) {
 	expect([1,2,3].map(function(i){return i*2;})).to.eql([ 2,4,6 ]);
 	next();
