@@ -1,24 +1,24 @@
 "use strict";
 
-var expect = require('expect.js');
+const expect = require('expect.js');
 
-var pair = {
-    match : (data, pattern) => {
+const pair = {
+    match(data, pattern){
         return data.call(pair, pattern);
     },
-    cons: (left, right) => {
+    cons(left, right){
         return (pattern) => {
             return pattern.cons(left, right);
         };
     },
-    right: (tuple) => {
+    right(tuple){
         return pair.match(tuple, {
             cons: (left, right) => {
                 return right;
             }
         });
     },
-    left: (tuple) => {
+    left(tuple){
         return pair.match(tuple, {
             cons: (left, right) => {
                 return left;
@@ -28,18 +28,18 @@ var pair = {
 };
 
 describe('EITHER', function() {
-    var EITHER = {
-        left: (error) => {
+    const EITHER = {
+        left(error){
             return pair.cons(error, null);
         },
-        right: (value) => {
+        right(value){
             return pair.cons(null, value);
         },
-        unit: (value) => {
+        unit(value){
             return EITHER.right(value);
         },
         // either#flatMap
-        flatMap: (instance) => {
+        flatMap(instance){
             return (transform) => {
                 if(pair.right(instance)){
                     return transform(pair.right(instance));
@@ -49,7 +49,7 @@ describe('EITHER', function() {
             };
         },
         // either#map
-        map: (instance) => {
+        map(instance){
             return (transform) => {
                 if(pair.right(instance)){
                     return EITHER.right(transform(pair.right(instance)));
@@ -72,6 +72,18 @@ describe('EITHER', function() {
             }))).to.eql(
                 2
                 );
+        expect(
+            pair.left(EITHER.flatMap(EITHER.left(1))((n) => {
+                return EITHER.unit(n+1); 
+            }))).to.eql(
+                1
+                );
+        expect(
+            pair.left(EITHER.flatMap(EITHER.unit(1))((n) => {
+                return EITHER.left("error"); 
+            }))).to.eql(
+                "error"
+        );
         expect(
             pair.right(EITHER.flatMap(EITHER.unit(1))((n) => {
                 return EITHER.flatMap(EITHER.unit(n+1))((m) => {
