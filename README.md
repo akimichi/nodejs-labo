@@ -1,8 +1,18 @@
 nodejs-labo
 ===============
 
-to install
-   npm install -g jasmine-node
+## インストール
 
-to invoke
-   jasmine-node spec
+
+~~~
+$ npm install 
+~~~
+
+## テスト
+
+~~~
+npm test
+~~~
+
+
+
