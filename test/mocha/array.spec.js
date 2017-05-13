@@ -6,7 +6,7 @@ var expect = require('expect.js');
 describe("配列について", () => {
   var ary = [0,1,2,3,4];
 
-  it('配列にアクセスする', function(next) {
+  it('配列にアクセスする', (next) => {
     expect(ary[0]).to.eql(0);
     next();
   });
