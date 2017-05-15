@@ -1,5 +1,5 @@
 #!/bin/sh
 
-docker run -it --rm -v $PWD:/usr/src/app registry.homeunix.net:5000/emile/nodejs-labo-6.10:0.1
+docker run -it --rm -v $PWD:/usr/src/app registry.homeunix.net:5000/emile/nodejs-labo-6.10:0.2
 
 
