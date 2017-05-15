@@ -4,4 +4,5 @@ FROM nodejs-labo-onbuild:6.10
 VOLUME ["/usr/src/app"]
 
 RUN npm install && npm cache clean
-
+RUN npm install mocha -g 
+WORKDIR /usr/src/app
