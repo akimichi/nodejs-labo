@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# npm install
+npm install
 docker run -it --rm -v $PWD:/usr/src/app registry.homeunix.net:5000/emile/nodejs-labo-6.10:0.7
 
 

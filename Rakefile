@@ -6,7 +6,7 @@ require 'rake/clean'
 task :default => :test
 
 task :test do
-  command = "docker run -it --rm -v $PWD:/usr/src/app registry.homeunix.net:5000/emile/nodejs-labo-6.10:0.1"
+  command = "docker run -it --rm -v $PWD:/usr/src/app registry.homeunix.net:5000/emile/nodejs-labo-6.10:0.7"
   sh command
 end
 
