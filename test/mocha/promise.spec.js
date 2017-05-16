@@ -7,6 +7,7 @@ describe("Promise", () => {
     const Promise = require("bluebird");
 
     it("test async function by promise",  (done) => {  
+      // 非同期関数をpromiseで定義する
       let asyncFunction = () => {
         return new Promise((resolve, reject) => {
           setTimeout(() => {
@@ -14,12 +15,13 @@ describe("Promise", () => {
           }, 16);
         });
       };
-
+      // 非同期関数をテストする
       asyncFunction().then((value) => {
         // expect(value).to.equal("")
         expect(value).to.equal("Async Hello world")
         done();
       }).catch((error) => {
+        expect().fail(); 
         done(error); 
       });
     });
