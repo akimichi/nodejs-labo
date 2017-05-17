@@ -64,8 +64,13 @@ describe("配列について", () => {
     );
     next();
   });
-  it('Array.map', function(next) {
-    expect([1,2,3].map(function(i){return i*2;})).to.eql([ 2,4,6 ]);
+  it('Array.map', (next) => {
+    expect(
+      [1,2,3].map(i => {return i*2;})
+      // [1,2,3].map((i) => {return i*2;})
+    ).to.eql(
+      [ 2,4,6 ]
+    );
     next();
   });
   it('Array.reduce', (next) => {
