@@ -145,7 +145,6 @@ describe("オブジェクト", () => {
     });
   });
   it("Object.freeze", (next) => {
-    /* #@range_begin(object_freeze_prevents_update) */
     var obj = {
       content: 1
     };
@@ -153,7 +152,6 @@ describe("オブジェクト", () => {
     expect(function(){
       obj.content = 10; // TypeErrorが投げられる
     }).to.throwError();
-    /* #@range_end(object_freeze_prevents_update) */
     next();
   });
 });

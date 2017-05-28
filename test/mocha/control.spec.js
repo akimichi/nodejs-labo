@@ -27,18 +27,18 @@ describe("制御構造", function() {
 	/* #@range_begin(switch) */
 	it("switch文", function(next) {
 	  var expression = 2 * 3;
-	  switch (expression){
-	  case 0:
-		fail();
-		break;
-	  case 6:
-		expect(expression).to.eql(6);
-		break;
-	  default:
-		fail();
-		break;
-	  }
-	  next();
+    switch (expression){
+      case 0:
+        fail();
+        break;
+      case 6:
+        expect(expression).to.eql(6);
+        break;
+      default:
+        fail();
+        break;
+    }
+    next();
 	});
 	/* #@range_end(switch) */
   });
