@@ -18,6 +18,7 @@ $ ./bin/test
 ### npmを利用する
 
 ~~~
+$ npm install mocha -g
 $ npm install 
 ~~~
 
@@ -25,6 +26,11 @@ $ npm install
 npm test
 ~~~
 
+個別のファイルをテストする。
+
+~~~
+$ mocha test/mocha/iomonad.spec.js
+~~~
 
 ### rubyを利用する
 

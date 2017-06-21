@@ -378,11 +378,19 @@ var IO = {
     };
   },
   // flatMap:: IO[T] => FUN[T => IO[U]] => IO[U]
-  flatMap : (instanceA) => {
-    return (actionAB) => { // actionAB:: a -> IO[b]
-      return IO.unit(IO.run(actionAB(IO.run(instanceA))));
+  flatMap: (instanceA) => {
+    return (actionAB) => { // actionAB:: a -> IO b
+      return () => IO.run(actionAB(IO.run(instanceA)))
     };
   },
+  // flatMap : (instanceA) => {
+  //   return (actionAB) => { // actionAB:: a -> IO[b]
+  //     // return (_) => {
+  //     //   return IO.run(actionAB(IO.run(instanceA)));
+  //     // };
+  //     return IO.unit(IO.run(actionAB(IO.run(instanceA))));
+  //   };
+  // },
   // done:: T => IO[T]
   done : (any) => {
     return IO.unit();
@@ -415,6 +423,7 @@ var IO = {
       };
     };
   },
+  
   // IO.seq:: IO[a] => IO[b] => IO[b]
   seq: (instanceA) => {
     return (instanceB) => {
@@ -447,9 +456,15 @@ var IO = {
   // IO.putChar関数は、一文字を出力する 
   // IO.putChar:: CHAR => IO[]
   putChar: (character) => {
-    process.stdout.write(character); // 1文字だけ画面に出力する
-    return IO.unit(null);
+    return  () => {
+      process.stdout.write(character); 
+      return null;
+    };
   },
+  // putChar: (character) => {
+  //   process.stdout.write(character); // 1文字だけ画面に出力する
+  //   return IO.unit(null);
+  // },
   // IO.putStr関数は、文字のリストを連続して出力する 
   // IO.putStr:: LIST[CHAR] => IO[]
   putStr: (alist) => {
@@ -488,7 +503,12 @@ describe('IO', () =>  {
     next();
   });
   it('IOモナドは合成可能である', (next) => {
-    
+    const ab = IO.flatMap(IO.putChar('a'))(() =>
+      IO.flatMap(IO.putChar('b'))(() =>
+        IO.done()
+      )
+    );  
+    IO.run(ab);
     next();
   });
   it('IOモナドで参照透過性を確保する', (next) => {
