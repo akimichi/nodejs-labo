@@ -19,6 +19,36 @@ describe("regex", () => {
     });
       
   });
+  describe("skkのエントリ", () => {
+    const regex = /^(\S+)\s\/([^\/]*)\//; 
+    it("testメソッド", (next) => {
+      expect(
+        regex.test("わるs /悪/") 
+      ).to.eql(
+        true 
+      );
+      next();
+    });
+    it("matchメソッド", (next) => {
+      const result = String("わるs /悪/").match(regex);
+      expect(
+        result[0]
+      ).to.eql(
+        "わるs /悪/" 
+      );
+      expect(
+        result[1]
+      ).to.eql(
+        "わるs" 
+      );
+      expect(
+        result[2]
+      ).to.eql(
+        "悪" 
+      );
+      next();
+    });
+  });
   describe("match", () => {
     it("; separated", (next) => {
       var result = String(";1001;00000000;159;003;1007bbd;2970;2680;6696;1116;0858;L;").match(/;([0-9]+);([^;]*);([0-9]+);([0-9]+);([0-9a-z]+);([0-9]+);([0-9]+);([0-9]+);([0-9]+);.*/);
@@ -55,5 +85,4 @@ describe("regex", () => {
       next();
     });
   });
-
 });
