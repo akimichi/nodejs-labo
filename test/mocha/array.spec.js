@@ -23,6 +23,14 @@ describe("配列について", () => {
     /* #@range_end(array_concat) */
     next();
   });
+  it('joinで配列から文字列を得る', function(next) {
+    expect(
+      [1,2,3].join(",")
+    ).to.eql(
+      "1,2,3" 
+    );
+    next();
+  });
   it('sliceで配列の部分を得る', function(next) {
     expect(ary.slice(0,2)).to.eql([0,1]);
     expect(ary.slice(0,1)).to.eql([0]);

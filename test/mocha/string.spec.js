@@ -40,6 +40,11 @@ describe("String型", function() {
     var str = "  string  ";
     expect(str.trim()).to.eql("string");
     expect(str.trim()).not.to.eql(str);
+    expect(
+      "string  ".trim()
+    ).to.eql(
+      "string"
+    );
     next();
   });
   it("charCodeAtは与えられた インデックスの文字の Unicode値を返す", function(next) {
