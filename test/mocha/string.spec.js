@@ -9,6 +9,11 @@ describe("String型", function() {
     expect(str).to.eql("string");
     next();
   });
+  it("length", function(next) {
+    var str = "string";
+    expect(str.length).to.eql(6);
+    next();
+  });
   describe("文字列を連結する", () => {
     it("string.concatで文字列を連結できる", (next) => {
       var a = "a";
