@@ -1,19 +1,30 @@
 "use strict";
 
-const  tty = require('tty'),
-  child_process = require('child_process'),
-  fs = require('fs');
+const child_process = require('child_process'),
+  fs = require('fs'),
+  tmp = require('tmp');
+
+const editor = process.env.EDITOR || 'nvim';
 
 
+tmp.file(function _tempFileCreated(err, path, fd, cleanupCallback) {
+  if (err) throw err;
 
-const tmp = require('tmp');
+  console.log('File: ', path);
+  console.log('Filedescriptor: ', fd);
 
-var editor = process.env.EDITOR || 'vim';
-
-var child = child_process.spawn(editor, ['/tmp/somefile.txt'], {
-  stdio: 'inherit'
+  const child = child_process.spawn(editor, [path], {
+    stdio: 'inherit'
+  });
+  child.on('exit',  (code, err) => {
+    fs.readFile(path, (err, data) => {
+      if (!err) {
+        console.log(data.toString());
+      }
+    });
+    console.log(`code: ${code}`);
+    console.log(`err: ${err}`);
+    console.log("finished");
+  });
 });
 
-child.on('exit', function (e, code) {
-  console.log("finished");
-});
