@@ -76,7 +76,25 @@ describe("オブジェクト", () => {
 
       next();
     });
-    it("オブジェクトをマージする", (next) => {
+    it("Object.assignでオブジェクトをマージする", (next) => {
+      var merge = (obj1,obj2) => {
+        var mergedObject = {};
+        Object.assign(obj1,obj2);
+        return obj1;
+      };
+      expect(
+        merge({},{})
+      ).to.eql(
+        {}
+      );
+      expect(
+        merge({a:1},{})
+      ).to.eql(
+        {a:1}
+      );
+      next();
+    });
+    it("for構文でオブジェクトをマージする", (next) => {
       var merge = (obj1,obj2) => {
         // for in 構文は非推奨となっている
         // Object.assignが推奨されている
