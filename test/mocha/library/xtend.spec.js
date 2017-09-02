@@ -6,7 +6,6 @@ const expect = require('expect.js');
 describe("xtendライブラリ", () => {
   const  extend = require("xtend")
 
-
   it('オブジェクトをマージする', (next) => {
     // extend returns a new object. Does not mutate arguments 
 

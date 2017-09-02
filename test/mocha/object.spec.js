@@ -76,47 +76,63 @@ describe("オブジェクト", () => {
 
       next();
     });
-    it("Object.assignでオブジェクトをマージする", (next) => {
-      var merge = (obj1,obj2) => {
-        var mergedObject = {};
-        Object.assign(obj1,obj2);
-        return obj1;
-      };
+    describe("Object.assignでオブジェクトをマージする", () => {
+      it("Object.assignでオブジェクトをマージする", (next) => {
+        var merge = (obj1,obj2) => {
+          var mergedObject = {};
+          Object.assign(obj1,obj2);
+          return obj1;
+        };
+        expect(
+          merge({},{})
+        ).to.eql(
+          {}
+        );
+        expect(
+          merge({a:1},{})
+        ).to.eql(
+          {a:1}
+        );
+        next();
+      });
+      it("for構文でオブジェクトをマージする", (next) => {
+        var merge = (obj1,obj2) => {
+          // for in 構文は非推奨となっている
+          // Object.assignが推奨されている
+          var mergedObject = {};
+          for (var attrname in obj1) { mergedObject[attrname] = obj1[attrname]; }
+          for (var attrname in obj2) { mergedObject[attrname] = obj2[attrname]; }
+          return mergedObject;
+        };
+        expect(
+          merge({},{})
+        ).to.eql(
+          {}
+        );
+
+        expect(
+          merge({a:1},{})
+        ).to.eql(
+          {a:1}
+        );
+
+        next();
+      });
+    });
+  });
+  describe('JSONとの相互変換', function() {
+    it("JSON.parseでJSON文字列をオブジェクトに変換する", (next) => {
+      const json = `{"key": 1}`
+      const obj = JSON.parse(json); 
       expect(
-        merge({},{})
-      ).to.eql(
-        {}
-      );
-      expect(
-        merge({a:1},{})
-      ).to.eql(
-        {a:1}
-      );
+        obj['key'] 
+      ).to.eql('1');
+      // expect(
+      //    JSON.parse(`{"key": 1 /* これはコメント */ }`)['key']
+      // ).to.eql('1');
       next();
     });
-    it("for構文でオブジェクトをマージする", (next) => {
-      var merge = (obj1,obj2) => {
-        // for in 構文は非推奨となっている
-        // Object.assignが推奨されている
-        var mergedObject = {};
-        for (var attrname in obj1) { mergedObject[attrname] = obj1[attrname]; }
-        for (var attrname in obj2) { mergedObject[attrname] = obj2[attrname]; }
-        return mergedObject;
-      };
-      expect(
-        merge({},{})
-      ).to.eql(
-        {}
-      );
 
-      expect(
-        merge({a:1},{})
-      ).to.eql(
-        {a:1}
-      );
-
-      next();
-    });
   });
   describe('OOP related patterns', function() {
     it("object literal pattern", function(next) {
