@@ -3,6 +3,21 @@
 var expect = require('expect.js');
 
 describe("regex", () => {
+  describe("日付を認識する", () => {
+    it("YYYY-MM-DDの形式で日付を認識する", (next) => {
+      expect(
+        /^\d\d\d\d-\d\d-\d\d/.test("abc") 
+      ).to.eql(
+        false 
+      );
+      expect(
+        /^\d\d\d\d-\d\d-\d\d/.test("2017-09-07") 
+      ).to.eql(
+        true 
+      );
+      next();
+    });
+  });
   describe("testメソッド", () => {
     it(";;で始まる ", (next) => {
       expect(
