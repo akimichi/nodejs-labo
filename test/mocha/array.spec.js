@@ -62,15 +62,33 @@ describe("配列について", () => {
     /* #@range_end(destructive_reverse) */
     next();
   });
-  it('Array.filter', (next) => {
-    expect(
-      [1,2,3].filter((i) => {
-        return i%2 === 0;
-      })
-    ).to.eql(
-      [ 2 ]
-    );
-    next();
+  describe('Array.filter', () => {
+    it('2の倍数をとりだす', (next) => {
+      expect(
+        [1,2,3].filter((i) => {
+          return i % 2 === 0;
+        })
+      ).to.eql(
+        [ 2 ]
+      );
+      next();
+    });
+    it('先頭が#で始まる行を除去する ', (next) => {
+      const lines = [
+        'abc',
+        '#abc',
+        '   abc',
+        '#  abc',
+      ];
+      expect(
+        lines.filter(line => {
+          return line.charCodeAt(0) != 35; // 35は#のUnicode値
+        })
+      ).to.eql(
+        [ 'abc', '   abc', ]
+      );
+      next();
+    });
   });
   it('Array.map', (next) => {
     expect(

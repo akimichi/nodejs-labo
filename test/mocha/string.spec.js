@@ -54,6 +54,7 @@ describe("String型", function() {
   });
   it("charCodeAtは与えられた インデックスの文字の Unicode値を返す", function(next) {
     expect('a'.charCodeAt(0)).to.be(97);
+    expect("#a".charCodeAt(0)).to.be(35);
     next();
   });
   describe('parseIntで文字列を数値に変換できる', function() {
@@ -87,6 +88,22 @@ describe("String型", function() {
     };
     expect(template("A :hole is filled", "hole", "template")).to.be("A template is filled");
     next();
+  });
+  describe("文字列の部分文字列を抽出する", function() {
+    it("String.slice", (next) => {
+      const str = "ABCDEFG";
+      expect(
+        str.slice(0,1)
+      ).to.eql(
+        "A"
+      );
+      expect(
+        str.slice(1 - str.length)
+      ).to.eql(
+        "BCDEFG"
+      );
+      next();
+    });
   });
   describe("文字列を置換する", function() {
     var string = "ジャンプ";
