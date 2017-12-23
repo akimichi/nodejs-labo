@@ -29,20 +29,49 @@ describe("制御構造", function() {
       expect(abs(-3)).to.eql(3);
       next();
     });
-    it("switch文", function(next) {
-      var expression = 2 * 3;
-      switch (expression){
-        case 0:
-          fail();
-          break;
-        case 6:
-          expect(expression).to.eql(6);
-          break;
-        default:
-          fail();
-          break;
-      }
-      next();
+    describe("switch文", function() {
+      it("通常の用法", function(next) {
+        var expression = 2 * 3;
+        switch (expression){
+          case 0:
+            fail();
+            break;
+          case 6:
+            expect(expression).to.eql(6);
+            break;
+          default:
+            fail();
+            break;
+        }
+        next();
+      });
+      it("正規表現で分岐する", function(next) {
+        const test = (source) => {
+          switch (true){
+            case /first/.test(source):
+              return source;
+            case /last/.test(source):
+              return source;
+            case /[0-9]+/.test(source):
+              return source;
+            default:
+              return null;
+          }
+        };
+        expect(
+          test("first")
+        ).to.eql("first");
+        expect(
+          test("second")
+        ).to.eql(null);
+        expect(
+          test(123)
+        ).to.eql(123);
+        expect(
+          test("123")
+        ).to.eql(123);
+        next();
+      });
     });
   });
   describe("反復文", function() {
