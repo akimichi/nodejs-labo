@@ -29,6 +29,11 @@ describe("配列について", () => {
     ).to.eql(
       "1,2,3" 
     );
+    expect(
+      ["a","b","c"].join(",")
+    ).to.eql(
+      "a,b,c" 
+    );
     next();
   });
   it('sliceで配列の部分を得る', function(next) {
