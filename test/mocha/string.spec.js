@@ -4,6 +4,22 @@ var expect = require('expect.js');
 
 
 describe("String型", function() {
+  describe("toStringを使う", () => {
+    const str = "string",
+      buff = new Buffer(str);
+    it("base64にエンコードする", (next) => {
+      const base64data = buff.toString('base64');
+      expect(base64data).to.eql("c3RyaW5n");
+      next();
+    });
+    it("base64をデコードする", (next) => {
+      const base64data = buff.toString('base64'),
+        base64buff = new Buffer(base64data, 'base64'),
+        text = base64buff.toString('ascii');
+      expect(text).to.eql("string");
+      next();
+    });
+  });
   it("文字列リテラル", function(next) {
     var str = "string";
     expect(str).to.eql("string");
