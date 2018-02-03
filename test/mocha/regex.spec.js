@@ -19,6 +19,24 @@ describe("regex", () => {
     });
   });
   describe("testメソッド", () => {
+    it("小数を認識する", (next) => {
+      expect(
+        /^[0-9]+\.[0-9]*/.test("0.01") 
+      ).to.eql(
+        true
+      );
+      expect(
+        /^-?[0-9]+\.[0-9]*/.test("0.01") 
+      ).to.eql(
+        true
+      );
+      expect(
+        /^-?[0-9]*\.[0-9]*/.test("-0.01") 
+      ).to.eql(
+        true
+      );
+      next();
+    });
     it(";;で始まる ", (next) => {
       expect(
         /^;;abc/.test(";;abc") 

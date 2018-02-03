@@ -73,7 +73,7 @@ describe("String型", function() {
     expect("#a".charCodeAt(0)).to.be(35);
     next();
   });
-  describe('parseIntで文字列を数値に変換できる', function() {
+  describe('parseIntで文字列を整数に変換できる', function() {
     it('10進法として変換する', function(next) {
       var number = "06";
       expect(parseInt(number,10)).to.eql(6);
@@ -87,6 +87,14 @@ describe("String型", function() {
     it('16進法として変換する', function(next) {
       expect(parseInt("7F",16)).to.eql(127);
       expect(parseInt("0C7F",16)).to.eql(3199);
+      next();
+    });
+  });
+  describe('parseFloatで文字列を小数に変換できる', function() {
+    it('10進法として変換する', (next) => {
+      expect(parseFloat("0.01")).to.eql(0.01);
+      expect(parseFloat("-0.01")).to.eql(-0.01);
+      expect(parseFloat(".01")).to.eql(0.01);
       next();
     });
   });
