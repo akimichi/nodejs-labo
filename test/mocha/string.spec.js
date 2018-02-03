@@ -20,6 +20,11 @@ describe("String型", function() {
       next();
     });
   });
+  it("startsWithで先頭文字を調べる", function(next) {
+    var str = "(succ)";
+    expect(str.startsWith("(")).to.eql(true);
+    next();
+  });
   it("文字列リテラル", function(next) {
     var str = "string";
     expect(str).to.eql("string");
