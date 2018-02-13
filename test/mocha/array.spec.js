@@ -6,6 +6,10 @@ var expect = require('expect.js');
 describe("配列について", () => {
   var ary = [0,1,2,3,4];
 
+  it('配列かどうかを判定する', (next) => {
+    expect(Array.isArray([0])).to.eql(true);
+    next();
+  });
   it('配列にアクセスする', (next) => {
     // expect(ary[0]).to.eql(1);
     expect(ary[0]).to.eql(0);

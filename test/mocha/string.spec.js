@@ -1,5 +1,6 @@
 "use strict";
 
+
 var expect = require('expect.js');
 
 
@@ -140,6 +141,11 @@ describe("String型", function() {
       string.replace("ジャンプ","jump")
     ).to.eql(
       "jump"
+    );
+    expect(
+      "(succ_1)".replace("_"," ")
+    ).to.eql(
+      "(succ 1)"
     );
   });
   describe("正規表現について", function() {
