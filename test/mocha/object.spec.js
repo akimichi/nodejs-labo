@@ -154,11 +154,12 @@ describe("オブジェクト", () => {
       };
       var hal9000 = new Robot('HAL9000');
       expect(hal9000.say()).to.eql('hello');
-      it("if you forget new constructor"), (next) => {
-        var atom = Robot('atom');
-        expect(typeof atom).to.eql('undefined');
-        next();
-      };
+      it("if you forget new constructor")
+      // it("if you forget new constructor", (next) => {
+      //   var atom = Robot('atom');
+      //   expect(typeof atom).to.eql('undefined');
+      //   next();
+      // });
     });
     it("constructor using prototype", (next) => {
       var Robot = function (name) {

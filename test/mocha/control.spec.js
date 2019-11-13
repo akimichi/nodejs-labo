@@ -93,11 +93,11 @@ describe("制御構造", function() {
     });
   });
   describe("例外処理", function() {
-    it("try catch", function(next) {
-
-      expect(counter).to.eql(10);
-      next();
-    });
+    it("try catch")
+    // it("try catch", function(next) {
+    //   expect(counter).to.eql(10);
+    //   next();
+    // });
   });
 });
 
