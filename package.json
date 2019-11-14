@@ -14,17 +14,13 @@
     "expect.js": "^0.3.1",
     "gulp": "^3.9.1",
     "jasmine-node": "^2.0.0",
-    "jsverify": "0.7.5",
-    "mocha": "^1.21.5",
     "mongodb": "2.2.27",
     "mongoose": "4.10.4",
-    "npm": "^2.15.12",
     "quickcheck": "^0.0.4",
     "request": "^2.81.0",
     "sinon": "1.17.7",
     "swig": "1.4.2",
-    "symbol": "^0.2.3",
-    "xtend": "4.0.1"
+    "symbol": "^0.2.3"
   },
   "engines": {
     "node": "6.9.x"
