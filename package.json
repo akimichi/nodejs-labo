@@ -15,7 +15,6 @@
     "gulp": "^3.9.1",
     "jasmine-node": "^2.0.0",
     "jsverify": "0.7.5",
-    "mocha": "^1.21.5",
     "mongodb": "2.2.27",
     "mongoose": "4.10.4",
     "npm": "^2.15.12",
